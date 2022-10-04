@@ -196,6 +196,24 @@ class _InputObjectTypesBuilder {
         _constructorBuilder(updates, input);
         _fieldsBuilder(updates, input);
         _toJsonBuilder(updates, input);
+
+        updates.constructors.add(code_builder.Constructor(
+          (code_builder.ConstructorBuilder builder) {
+            builder.name = 'fromJson';
+            builder.requiredParameters.add(code_builder.Parameter(
+              (code_builder.ParameterBuilder builder) {
+                builder.name = 'json';
+                builder.type = code_builder.Reference('Map<String, dynamic>');
+              },
+            ));
+
+            builder.body = code_builder.Code(
+                '_\$${dartClassnameFixer(input.name)}FromJson(json)');
+            builder.lambda = true;
+
+            builder.factory = true;
+          },
+        ));
       }));
     }
   }
