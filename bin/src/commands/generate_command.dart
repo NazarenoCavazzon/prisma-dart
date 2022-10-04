@@ -62,7 +62,7 @@ class GenerateCommand extends Command {
     );
     if (!await cliBinaryEngine.hasDownloaded) {
       await cliBinaryEngine.download(
-          AnsiProgress.createFutureHandler('Download binray query engine'));
+          AnsiProgress.createFutureHandler('Download binary query engine'));
       await Future.delayed(Duration(microseconds: 500));
     }
 
